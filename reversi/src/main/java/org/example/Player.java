@@ -1,4 +1,4 @@
 package org.example;
 
-public class Player extends Game {
+public class Player extends Participant {
 }
