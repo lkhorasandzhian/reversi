@@ -17,10 +17,10 @@ public final class Screen {
         System.out.println("0. BACK");
     }
 
-    public static void printTopScore(String topPlayer, int topScore) {
+    public static void printTopScore(Player topPlayer) {
         System.out.println("THE BEST PLAYER");
-        System.out.println("Name: " + topPlayer);
-        System.out.println("Score: " + topScore);
+        System.out.println("Name: " + topPlayer.name);
+        System.out.println("Score: " + topPlayer.score);
     }
 
     public static void printSettings() {
@@ -47,5 +47,10 @@ public final class Screen {
             System.out.println("|");
             System.out.println("—————————————————————————————————————————————————————————");
         }
+    }
+
+    public static void printParticipant(Participant participant) {
+        System.out.println(participant.name + "'s turn...");
+        System.out.print("Move: ");
     }
 }

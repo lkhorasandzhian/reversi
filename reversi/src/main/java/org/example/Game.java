@@ -1,15 +1,13 @@
 package org.example;
 
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 public final class Game {
-    private static final Scanner input = new Scanner(System.in);
     private static final GameChips[][] field = new GameChips[8][8];
-    private static String topPlayer = "---";
-    private static int topScore = 0;
+    private static final Player topPlayer;
 
     static {
+        topPlayer = new Player("---");
         field[3][3] = GameChips.WHITE;
         field[4][4] = GameChips.WHITE;
         field[4][3] = GameChips.BLACK;
@@ -18,6 +16,13 @@ public final class Game {
         field[2][3] = GameChips.AVAILABLE;
         field[5][4] = GameChips.AVAILABLE;
         field[4][5] = GameChips.AVAILABLE;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (field[i][j] == null) {
+                    field[i][j] = GameChips.EMPTY;
+                }
+            }
+        }
     }
 
     public static void StartProcess() {
@@ -27,14 +32,12 @@ public final class Game {
             System.out.println();
             if (signal == 1) {
                 Screen.printPlaySection();
-                switch (receiveSignal(4)) {
-                    case 1 -> playEasyMode();
-                    case 2 -> playAdvancedMode();
-                    case 3 -> playPvP();
-                    case 0 -> {}
+                int mode = receiveSignal(4);
+                if (mode != 0) {
+                    startGame(mode);
                 }
             } else if (signal == 2) {
-                Screen.printTopScore(topPlayer, topScore);
+                Screen.printTopScore(topPlayer);
             } else if (signal == 3) {
                 Screen.printSettings();
                 switch (receiveSignal(2)) {
@@ -53,7 +56,7 @@ public final class Game {
         int signal;
         while (true) {
             try {
-                signal = Integer.parseInt(input.nextLine());
+                signal = Integer.parseInt(Main.input.nextLine());
                 if (0 <= signal && signal <= countOfItems - 1) {
                     return signal;
                 }
@@ -68,20 +71,28 @@ public final class Game {
         }
     }
 
-    private static void playEasyMode() {
+    private static void startGame(int mode) {
         Screen.printField(field);
-    }
 
-    private static void playAdvancedMode() {
-        Screen.printField(field);
-    }
+        Participant participant1 = Player.createPlayer();
+        Participant participant2 = switch (mode) {
+            case 1 -> new Bot(false);
+            case 2 -> new Bot(true);
+            default -> Player.createPlayer();
+        };
 
-    private static void playPvP() {
-        Screen.printField(field);
+        do {
+            participant1.makeMove();
+            Screen.printField(field);
+            System.out.println();
+            participant2.makeMove();
+            Screen.printField(field);
+            System.out.println();
+        } while (!participant1.isWinner && !participant2.isWinner);
     }
 
     private static void removeBestPlayer() {
-        topPlayer = "---";
-        topScore = 0;
+        topPlayer.name = "---";
+        topPlayer.score = 0;
     }
 }
