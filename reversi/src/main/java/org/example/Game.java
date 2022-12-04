@@ -95,7 +95,7 @@ public final class Game {
                 drawReceivedChips(move);
                 wasUnavailable = false;
             } else {
-                System.out.println(participants[i].name + " hasn't available moves...");
+                System.out.println(participants[i].name + " hasn't available moves..." + System.lineSeparator());
                 if (wasUnavailable) {
                     break;
                 }

@@ -70,9 +70,9 @@ public final class Screen {
     }
 
     public static void printGameResult(Participant participant1, Participant participant2, Participant winner) {
-        System.out.println(System.lineSeparator() + "GAME INFO:");
-        System.out.println(participant1.name + " (" + participant1.color + ") has" + participant1.score + "score");
-        System.out.println(participant2.name + " (" + participant2.color + ") has" + participant2.score + "score");
+        System.out.println("GAME INFO:");
+        System.out.println(participant1.name + " (" + participant1.color + ") has " + participant1.score + " score");
+        System.out.println(participant2.name + " (" + participant2.color + ") has " + participant2.score + " score");
         System.out.println();
         if (winner != null) {
             System.out.println(winner.name + " WIN!");
