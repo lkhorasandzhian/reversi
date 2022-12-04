@@ -30,6 +30,7 @@ public final class Player extends Participant {
     @Override
     public String makeMove(GameChips[][] field) {
         String move;
+
         while (true) {
             move = chooseMove();
 
@@ -45,26 +46,24 @@ public final class Player extends Participant {
     }
 
     private String chooseMove() {
-        {
-            String move;
-            while (true) {
-                try {
-                    System.out.print("Move: ");
-                    move = Main.input.nextLine();
-                    if (move.length() == 2 &&
-                        'a' <= move.charAt(0) && move.charAt(0) <= 'h' &&
-                        '1' <= move.charAt(1) && move.charAt(1) <= '8') {
-                        System.out.println();
-                        return move;
-                    }
-                    System.out.println(System.lineSeparator() + "Move must contains 1 letter and 1 number. Please, try again...");
-                } catch (NoSuchElementException exception) {
-                    System.out.println(System.lineSeparator() + "Shortcut Ctrl+D or something else was pressed");
-                    System.out.println("Restart application whether you want play again");
-                    System.exit(0);
-                } catch (Throwable exception) {
-                    System.out.println(System.lineSeparator() + "Incorrect move. Please, try again...");
+        String move;
+        while (true) {
+            try {
+                System.out.print("Move: ");
+                move = Main.input.nextLine();
+                if (move.length() == 2 &&
+                    'a' <= move.charAt(0) && move.charAt(0) <= 'h' &&
+                    '1' <= move.charAt(1) && move.charAt(1) <= '8') {
+                    System.out.println();
+                    return move;
                 }
+                System.out.println(System.lineSeparator() + "Move must contains 1 letter and 1 number. Please, try again...");
+            } catch (NoSuchElementException exception) {
+                System.out.println(System.lineSeparator() + "Shortcut Ctrl+D or something else was pressed");
+                System.out.println("Restart application whether you want play again");
+                System.exit(0);
+            } catch (Throwable exception) {
+                System.out.println(System.lineSeparator() + "Incorrect move. Please, try again...");
             }
         }
     }

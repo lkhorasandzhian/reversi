@@ -85,6 +85,7 @@ public final class Game {
         while (true) {
             Screen.printTurn(participants[i]);
             addAvailableCells(participants[i].color);
+            Screen.printAvailableMoves(field);
             addScore(participants);
             Screen.printScoreTable(participant1, participant2);
             Screen.printField(field);

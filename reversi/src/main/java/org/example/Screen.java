@@ -69,6 +69,34 @@ public final class Screen {
         System.out.println(participant.name + "'s (" + participant.color + ") turn.");
     }
 
+    public static void printAvailableMoves(GameChips[][] field) {
+        System.out.print("Available moves: ");
+
+        char x;
+        char y;
+
+        boolean hasMoves = false;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (field[i][j] == GameChips.AVAILABLE) {
+                    x = (char)(j + 'a');
+                    y = (char)(8 - i + '0');
+                    if (!hasMoves) {
+                        System.out.print(x + "" + y);
+                        hasMoves = true;
+                    } else {
+                        System.out.print(", " + x + "" + y);
+                    }
+                }
+            }
+        }
+
+        if (!hasMoves) {
+            System.out.print("empty");
+        }
+        System.out.println(".");
+    }
+
     public static void printGameResult(Participant participant1, Participant participant2, Participant winner) {
         System.out.println("GAME INFO:");
         System.out.println(participant1.name + " (" + participant1.color + ") has " + participant1.score + " score");

@@ -11,6 +11,14 @@ public final class Bot extends Participant {
 
     @Override
     public String makeMove(GameChips[][] field) {
+        return isAdvanced ? makeAdvancedMove(field) : makeEasyMove(field);
+    }
+
+    private String makeEasyMove(GameChips[][] field) {
+        return "";
+    }
+
+    private String makeAdvancedMove(GameChips[][] field) {
         return "";
     }
 }
