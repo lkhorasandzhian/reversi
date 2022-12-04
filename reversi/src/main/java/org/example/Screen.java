@@ -19,8 +19,12 @@ public final class Screen {
 
     public static void printTopScore(Player topPlayer) {
         System.out.println("THE BEST PLAYER");
-        System.out.println("Name: " + topPlayer.name);
-        System.out.println("Score: " + topPlayer.score);
+        if (topPlayer != null) {
+            System.out.println("Name: " + topPlayer.name);
+            System.out.println("Score: " + topPlayer.score);
+        } else {
+            System.out.println("No information");
+        }
     }
 
     public static void printSettings() {
@@ -38,19 +42,42 @@ public final class Screen {
                 ░╚═════╝░░╚════╝░░╚════╝░╚═════╝░╚═════╝░░░░╚═╝░░░╚══════╝""");
     }
 
-    public static void printField(GameChips[][] field) {
-        System.out.println("—————————————————————————————————————————————————————————");
-        for (var line : field) {
-            for (var chip : line) {
-                System.out.print("|" + chip);
-            }
-            System.out.println("|");
-            System.out.println("—————————————————————————————————————————————————————————");
-        }
+    public static void printScoreTable(Participant participant1, Participant participant2) {
+        System.out.print(System.lineSeparator() + "                      ");
+        System.out.println(participant1.color + " " + participant1.score + "      " + participant2.color + " " + participant2.score);
     }
 
-    public static void printParticipant(Participant participant) {
-        System.out.println(participant.name + "'s turn...");
-        System.out.print("Move: ");
+    public static void printField(GameChips[][] field) {
+        char number = '8';
+        System.out.println("  —————————————————————————————————————————————————————————————————");
+        for (var line : field) {
+            System.out.print(number--);
+            for (var chip : line) {
+                System.out.print(" |" + chip);
+            }
+            System.out.println(" |");
+            System.out.println("  —————————————————————————————————————————————————————————————————");
+        }
+        System.out.print("      ");
+        for (char letter = 'a'; letter <= 'h'; letter++) {
+            System.out.print(letter + "       ");
+        }
+        System.out.println();
+    }
+
+    public static void printTurn(Participant participant) {
+        System.out.println(participant.name + "'s (" + participant.color + ") turn.");
+    }
+
+    public static void printGameResult(Participant participant1, Participant participant2, Participant winner) {
+        System.out.println(System.lineSeparator() + "GAME INFO:");
+        System.out.println(participant1.name + " (" + participant1.color + ") has" + participant1.score + "score");
+        System.out.println(participant2.name + " (" + participant2.color + ") has" + participant2.score + "score");
+        System.out.println();
+        if (winner != null) {
+            System.out.println(winner.name + " WIN!");
+        }else {
+            System.out.println("DRAW!");
+        }
     }
 }

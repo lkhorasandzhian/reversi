@@ -3,12 +3,12 @@ package org.example;
 public abstract class Participant {
     protected int score = 0;
     protected String name;
-    protected String lastMove;
-    protected Boolean isWinner = false;
+    protected GameChips color;
 
-    protected Participant(String name) {
+    protected Participant(String name, GameChips color) {
         this.name = name;
+        this.color = color;
     }
 
-    protected abstract void makeMove();
+    protected abstract String makeMove(GameChips[][] field);
 }

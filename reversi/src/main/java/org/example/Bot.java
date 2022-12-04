@@ -2,15 +2,15 @@ package org.example;
 
 public final class Bot extends Participant {
     private static int number = 1;
-    private Boolean isAdvanced;
+    private boolean isAdvanced;
 
-    public Bot(Boolean isAdvanced) {
-        super("Bot");
+    public Bot(boolean isAdvanced, GameChips color) {
+        super("Bot", color);
         this.isAdvanced = isAdvanced;
     }
 
     @Override
-    protected void makeMove() {
-
+    public String makeMove(GameChips[][] field) {
+        return "";
     }
 }
