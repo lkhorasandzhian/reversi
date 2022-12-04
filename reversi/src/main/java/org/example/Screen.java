@@ -12,8 +12,7 @@ public final class Screen {
 
     public static void printPlaySection() {
         System.out.println("1. EASY BOT");
-        System.out.println("2. ADVANCED BOT");
-        System.out.println("3. PvP");
+        System.out.println("2. PvP");
         System.out.println("0. BACK");
     }
 

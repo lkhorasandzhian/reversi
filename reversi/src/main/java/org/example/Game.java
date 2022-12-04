@@ -28,7 +28,7 @@ public final class Game {
             System.out.println();
             if (signal == 1) {
                 Screen.printPlaySection();
-                int mode = receiveSignal(4);
+                int mode = receiveSignal(3);
                 if (mode != 0) {
                     startGame(mode);
                 }
@@ -70,11 +70,7 @@ public final class Game {
     private static void startGame(int mode) {
         System.out.println();
         Participant participant1 = Player.createPlayer(GameChips.BLACK);
-        Participant participant2 = switch (mode) {
-            case 1 -> new Bot(false, GameChips.WHITE);
-            case 2 -> new Bot(true, GameChips.WHITE);
-            default -> Player.createPlayer(GameChips.WHITE);
-        };
+        Participant participant2 = mode == 1 ? new Bot(GameChips.WHITE) : Player.createPlayer(GameChips.WHITE);
 
         Participant[] participants = { participant1, participant2 };
 
@@ -169,7 +165,7 @@ public final class Game {
         return false;
     }
 
-    private static boolean isCorrectRange(int index) {
+    public static boolean isCorrectRange(int index) {
         return (0 <= index && index <= 7);
     }
 
